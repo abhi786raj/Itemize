@@ -1,4 +1,4 @@
-const CACHE = 'itemize-v4'
+const CACHE = 'itemize-v5'
 const ASSETS = [
   './',
   './index.html',
