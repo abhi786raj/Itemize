@@ -1,4 +1,4 @@
-const CACHE = 'itemize-v3'
+const CACHE = 'itemize-v4'
 const ASSETS = [
   './',
   './index.html',
@@ -43,6 +43,13 @@ self.addEventListener('activate', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
+  const { pathname } = new URL(event.request.url)
+  if (pathname.endsWith('/manifest.webmanifest')) {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    )
+    return
+  }
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request))
   )
