@@ -2,9 +2,9 @@
   "name": "Itemize",
   "short_name": "Itemize",
   "description": "Analyze and save receipt data offline",
-  "id": "https://abhi786raj.github.io/Itemize/",
-  "start_url": "/Itemize/index.html",
-  "scope": "/Itemize/",
+  "id": "https://abhi786raj.github.io/Itemize/?v=2",
+  "start_url": "https://abhi786raj.github.io/Itemize/",
+  "scope": "https://abhi786raj.github.io/Itemize/",
   "display": "standalone",
   "theme_color": "#f3f4f6",
   "background_color": "#f3f4f6",
@@ -13,25 +13,25 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "./assets/icon.svg",
+      "src": "/Itemize/assets/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "./assets/icon-192.png",
+      "src": "/Itemize/assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./assets/icon-512.png",
+      "src": "/Itemize/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./assets/icon-512-maskable.png",
+      "src": "/Itemize/assets/icon-512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

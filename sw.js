@@ -1,4 +1,4 @@
-const CACHE = 'itemize-v5'
+const CACHE = 'itemize-v6'
 const ASSETS = [
   './',
   './index.html',
@@ -26,7 +26,6 @@ const ASSETS = [
   './assets/splash/splash-750x1334.png',
   './assets/splash/splash-1668x2388.png',
   './assets/splash/splash-2048x2732.png',
-  './manifest.webmanifest',
 ]
 
 self.addEventListener('install', (event) => {
