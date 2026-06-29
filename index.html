@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f3f4f6" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Itemize</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./assets/splash/splash-1290x2796.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./assets/splash/splash-1179x2556.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./assets/splash/splash-1170x2532.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="./assets/splash/splash-1284x2778.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./assets/splash/splash-828x1792.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./assets/splash/splash-750x1334.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./assets/splash/splash-1668x2388.png" />
+    <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./assets/splash/splash-2048x2732.png" />
+    <script src="tailwind.min.js"></script>
+  </head>
+  <body class="m-0 h-full bg-gray-100 text-gray-900 antialiased">
+    <div id="app" class="mx-auto min-h-dvh max-w-[480px] bg-gray-100 relative">
+
+      <!-- Home -->
+      <section data-view="home" class="min-h-dvh pb-24 transition-opacity duration-300 ease-in-out opacity-100 pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <header class="flex items-center gap-3 mb-6">
+          <img src="./assets/icon.svg" alt="" class="h-10 w-10 rounded-xl" width="40" height="40" />
+          <div class="flex-1">
+            <h1 class="text-lg font-bold text-gray-900">Itemize</h1>
+          </div>
+          <span class="bg-green-100 text-green-700 rounded-full text-xs px-2.5 py-1 font-medium">Ready</span>
+        </header>
+
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Analyze your receipt in seconds</h2>
+          <p class="text-sm text-gray-600 leading-relaxed">Copy the prompt below, analyze your receipt in your preferred AI assistant and paste the generated JSON.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-4 mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-semibold text-gray-900">Receipt Analysis Prompt</h3>
+            <div class="flex gap-2">
+              <button id="expand-prompt-btn" type="button" class="border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium min-h-[44px] transition-all active:scale-[0.98]">Expand</button>
+              <button id="copy-prompt-btn" type="button" class="bg-indigo-600 text-white rounded-xl px-3 py-2 text-xs font-medium min-h-[44px] transition-all active:scale-[0.98]">
+                <span data-copy-label>Copy</span>
+              </button>
+            </div>
+          </div>
+          <textarea id="prompt-text" readonly rows="6" class="w-full rounded-xl border border-gray-200 p-3 text-xs text-gray-600 bg-gray-50 resize-none focus:outline-none"></textarea>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-4 mb-6">
+          <h3 class="text-sm font-semibold text-gray-900 mb-4">How it works</h3>
+          <ol class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">1</span>
+              <span class="text-sm text-gray-600 pt-0.5">Copy Prompt</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">2</span>
+              <span class="text-sm text-gray-600 pt-0.5">Analyze receipt using AI</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">3</span>
+              <span class="text-sm text-gray-600 pt-0.5">Paste JSON</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">4</span>
+              <span class="text-sm text-gray-600 pt-0.5">Verify and Save</span>
+            </li>
+          </ol>
+        </div>
+
+        <button id="paste-json-btn" type="button" class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98] shadow-sm">
+          Paste JSON
+        </button>
+      </section>
+
+      <!-- JSON Input -->
+      <section data-view="json-input" class="hidden min-h-dvh pb-24 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <div class="flex items-center gap-3 mb-4">
+          <button id="json-back-btn" type="button" class="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white transition-all active:scale-[0.98]" aria-label="Back">
+            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <span class="text-xs font-medium text-indigo-600 bg-indigo-50 rounded-full px-2.5 py-1">Step 2 of 4</span>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Paste extracted receipt data</h2>
+
+        <textarea id="json-textarea" name="json-textarea" rows="12" placeholder='{"order_id": "...", ...}' class="w-full rounded-2xl border border-gray-200 p-4 text-sm font-mono bg-white min-h-[200px] focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all mb-3" autocomplete="off"></textarea>
+
+        <p id="json-error" class="hidden text-sm text-red-600 mb-2"></p>
+        <p id="json-char-count" class="text-xs text-gray-400 mb-4">0 characters</p>
+
+        <div class="flex gap-2 mb-6">
+          <button id="json-paste-btn" type="button" class="flex-1 border border-gray-200 rounded-2xl py-3 min-h-[44px] text-sm font-medium bg-white transition-all active:scale-[0.98]">Paste</button>
+          <button id="json-format-btn" type="button" class="flex-1 border border-gray-200 rounded-2xl py-3 min-h-[44px] text-sm font-medium bg-white transition-all active:scale-[0.98]">Format JSON</button>
+          <button id="json-clear-btn" type="button" class="flex-1 border border-gray-200 rounded-2xl py-3 min-h-[44px] text-sm font-medium bg-white transition-all active:scale-[0.98]">Clear</button>
+        </div>
+
+        <button id="review-receipt-btn" type="button" disabled class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98] opacity-50 cursor-not-allowed">
+          Review Receipt
+        </button>
+      </section>
+
+      <!-- Review -->
+      <section data-view="review" class="hidden min-h-dvh pb-32 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <div class="flex items-center gap-3 mb-4">
+          <button id="review-back-btn" type="button" class="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white transition-all active:scale-[0.98]" aria-label="Back">
+            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <span class="text-xs font-medium text-indigo-600 bg-indigo-50 rounded-full px-2.5 py-1">Step 3 of 4</span>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Verify Details</h2>
+
+        <div id="review-sections"></div>
+
+        <button id="edit-json-btn" type="button" class="w-full border border-gray-200 rounded-2xl py-3 min-h-[44px] text-sm font-medium bg-white mb-4 transition-all active:scale-[0.98]">
+          Edit JSON
+        </button>
+
+        <div class="fixed bottom-0 inset-x-0 max-w-[480px] mx-auto px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 bg-gray-100/95 backdrop-blur-sm z-40">
+          <button id="confirm-save-btn" type="button" class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98] shadow-sm">
+            Confirm &amp; Save
+          </button>
+        </div>
+      </section>
+
+      <!-- Success -->
+      <section data-view="success" class="hidden min-h-dvh pb-24 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none flex flex-col items-center justify-center px-4 pt-[max(1rem,env(safe-area-inset-top))]">
+        <div class="flex flex-col items-center text-center">
+          <div class="flex h-24 w-24 items-center justify-center rounded-full bg-green-100 mb-6">
+            <svg class="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Receipt Saved Successfully</h2>
+          <div class="w-full space-y-3">
+            <button id="view-history-btn" type="button" class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98]">
+              View History
+            </button>
+            <button id="add-another-btn" type="button" class="w-full border border-gray-200 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-white transition-all active:scale-[0.98]">
+              Add Another Receipt
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section data-view="history" class="hidden min-h-dvh pb-24 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">History</h2>
+        <input id="history-search" name="history-search" type="search" placeholder="Search by platform, order ID, or payment..." class="w-full rounded-2xl border border-gray-200 p-3 text-sm bg-white min-h-[44px] focus:ring-2 focus:ring-indigo-500 focus:outline-none mb-4 transition-all" />
+        <div id="history-list"></div>
+      </section>
+
+      <!-- History Detail -->
+      <section data-view="history-detail" class="hidden min-h-dvh pb-24 transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <div class="flex items-center gap-3 mb-4">
+          <button id="detail-back-btn" type="button" class="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white transition-all active:scale-[0.98]" aria-label="Back">
+            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <h2 class="text-xl font-bold text-gray-900">Receipt Details</h2>
+        </div>
+        <div id="detail-content" class="mb-4"></div>
+        <div class="flex gap-3">
+          <button id="detail-edit-btn" type="button" class="flex-1 bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98]">Edit</button>
+          <button id="detail-delete-btn" type="button" class="flex-1 border border-red-200 text-red-600 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-white transition-all active:scale-[0.98]">Delete</button>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section data-view="settings" class="hidden min-h-dvh pb-28 overflow-y-auto transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none pt-[max(1rem,env(safe-area-inset-top))] px-4">
+        <h2 class="text-xl font-bold text-gray-900 mb-6">Settings</h2>
+
+        <div class="bg-white rounded-2xl shadow-sm p-4 mb-4">
+          <h3 class="text-sm font-semibold text-gray-900 mb-3">Data Backup</h3>
+          <div class="space-y-3">
+            <button id="export-data-btn" type="button" class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98]">
+              Export Data
+            </button>
+            <button id="import-data-btn" type="button" class="w-full border border-gray-200 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-white transition-all active:scale-[0.98]">
+              Import Data
+            </button>
+            <input id="import-file-input" type="file" accept=".json,application/json" class="hidden" />
+          </div>
+          <p class="text-xs text-gray-400 mt-3">Download all receipts as JSON, or restore from a backup file.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-4 mb-4">
+          <h3 class="text-sm font-semibold text-gray-900 mb-1">Itemize</h3>
+          <p class="text-sm text-gray-500 mb-3">Version 1.0.0</p>
+          <p id="receipt-count" class="text-sm text-gray-600">0 receipts saved</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-4 mb-4">
+          <h3 class="text-sm font-semibold text-gray-900 mb-1">Offline Status</h3>
+          <p id="offline-status" class="text-sm text-green-600">Online — offline ready</p>
+        </div>
+
+        <button id="clear-all-btn" type="button" class="w-full border border-red-200 text-red-600 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-white transition-all active:scale-[0.98] mb-6">
+          Clear All Receipts
+        </button>
+      </section>
+
+      <!-- Bottom Navigation -->
+      <nav id="bottom-nav" class="fixed bottom-0 inset-x-0 max-w-[480px] mx-auto bg-white border-t border-gray-200 z-50 pb-[env(safe-area-inset-bottom)]">
+        <div class="flex">
+          <button data-nav="home" type="button" class="flex-1 flex flex-col items-center gap-1 py-3 min-h-[56px] text-indigo-600 transition-colors">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="text-xs font-medium">Home</span>
+          </button>
+          <button data-nav="history" type="button" class="flex-1 flex flex-col items-center gap-1 py-3 min-h-[56px] text-gray-400 transition-colors">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0 0118 0z"/></svg>
+            <span class="text-xs font-medium">History</span>
+          </button>
+          <button data-nav="settings" type="button" class="flex-1 flex flex-col items-center gap-1 py-3 min-h-[56px] text-gray-400 transition-colors">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-xs font-medium">Settings</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Prompt Expand Modal -->
+      <div id="prompt-modal" class="hidden fixed inset-0 z-[60] bg-black/50 items-end justify-center p-4">
+        <div class="w-full max-w-[480px] bg-white rounded-2xl p-4 max-h-[85vh] flex flex-col">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-semibold text-gray-900">Receipt Analysis Prompt</h3>
+            <button id="close-prompt-modal" type="button" class="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 transition-all active:scale-[0.98]" aria-label="Close">
+              <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <textarea id="prompt-modal-text" readonly class="flex-1 w-full rounded-xl border border-gray-200 p-3 text-xs text-gray-600 bg-gray-50 resize-none focus:outline-none min-h-[300px]"></textarea>
+        </div>
+      </div>
+
+      <!-- Import Modal -->
+      <div id="import-modal" class="hidden fixed inset-0 z-[60] bg-black/50 items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="import-modal-title">
+        <div class="w-full max-w-[480px] bg-white rounded-2xl p-5 shadow-lg">
+          <h3 id="import-modal-title" class="text-lg font-bold text-gray-900 mb-2">Import Receipts</h3>
+          <p class="text-sm text-gray-600 mb-5">
+            Found <span id="import-modal-count" class="font-semibold text-gray-900">0</span> valid receipt(s). Choose how to import:
+          </p>
+          <div class="space-y-3">
+            <button id="import-merge-btn" type="button" class="w-full bg-indigo-600 text-white rounded-2xl py-3.5 min-h-[48px] font-semibold transition-all active:scale-[0.98]">
+              Merge with existing data
+            </button>
+            <button id="import-replace-btn" type="button" class="w-full border border-amber-200 text-amber-700 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-amber-50 transition-all active:scale-[0.98]">
+              Replace all existing data
+            </button>
+            <button id="import-cancel-btn" type="button" class="w-full border border-gray-200 rounded-2xl py-3.5 min-h-[48px] font-semibold bg-white text-gray-700 transition-all active:scale-[0.98]">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="hidden fixed top-4 left-1/2 -translate-x-1/2 max-w-[440px] w-[calc(100%-2rem)] bg-gray-900 text-white text-sm rounded-2xl px-4 py-3 z-[70] opacity-0 transition-opacity duration-300 shadow-lg"></div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
